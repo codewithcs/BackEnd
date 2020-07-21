@@ -1,0 +1,60 @@
+<% include partials/header %>
+
+<div class="ui main text container segment">
+	
+	<div class="ui huge header">
+		Edit <%= blog.title %>
+	</div>
+	
+	<form class="ui form" action="/blogs/<%= blog._id %>?_method=PUT" method="POST" >
+		
+		<div class="field" >
+			<label>Title</label>
+			<input type="text" required name="blog[title]"  value="<%= blog.title%>">
+		</div>
+		
+		<div class="field" >
+			<label>Image</label>
+			<input type="text" required name="blog[image]" value="<%= blog.image %>" >
+		</div>
+		
+		<div class="field">
+			<label>Blog Content</label>
+			<textarea required name="blog[body]" placeholder="Blog post goes here" > 
+				<%= blog.body %>
+			</textarea>
+		</div>	
+		
+			<input class="ui violet basic big button" type="submit">
+			
+	</form>
+	
+</div> <!-- New Blog and the form will come under 1 container. --> 
+
+<% include partials/footer %>
+
+<!-- For edit.ejs, take the form from new.ejs 
+We want the form to be prefilled with data. Otherwise we are not editing. 
+We are just typing stuff over.
+
+We specify value of the form, whatever is inside the input using the 'value' attribute.  
+No need of placeholder since the inputs would already be filled. 
+
+textarea does not have 'value' attribute. Instead, whatever is in between the tags is pre-filled.
+
+After updating we have to update the right blog in the database. We use a PUT request and update by id. 
+However we can do everything with POST request also.
+
+But when following REST convention, we use PUT request. 
+
+Problem: HTML forms do not support PUT requests.
+So whatever data we send will be there in the query string and it will take us to the show page. 
+So when we  try use a PUT request, it uses a GET request. 
+
+We add a query string in the action attribute. 
+
+We will override the POST request using method-override package. 
+
+We could have created a separate route using POST for updating 
+but it is about following a pattern. 
+-->

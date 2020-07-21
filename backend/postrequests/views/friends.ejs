@@ -1,0 +1,43 @@
+<li>Friend list goes here!!</li>
+
+
+<% myfriends.forEach(function(friend) { %>
+<li> My friend is <%= friend  %> </li>
+<% } ) ; %>
+
+<form action="/addfriend" method= "POST" >
+	<input type= "text" name="myname" placeholder= "name" >
+	<button> Click me to add your friend </button>
+</form>
+
+<!-- The name attribute we give here is the  
+key we look it by inside of the route. -->
+
+<!--
+After hitting this button we want to add this friend 
+in the friends array defined in app.js file
+
+We first make a GET request to the /friends route. After reaching 
+this page, we make a POST request  
+to add a new friend.
+
+The name we enter in the input field will be sent in "POST" request's body. 
+Inside the body of the request there will be a single property named "myname". 
+and it will be equal to say "Bob" 
+
+All of the form data is put into request's body and then it gets to our express app
+and we pull it out of the request body. 
+
+
+Express does not create request.body for us. We need to explicitly tell it to take the 
+request body and convert it into a Javascript object for us to use. 
+
+We need to install body-parser to extract data from a form. 
+
+
+-->
+
+
+
+
+

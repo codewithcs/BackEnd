@@ -1,0 +1,56 @@
+ <%- include ("../partials/header") %>
+
+<!-- Put everything inside a container so as to create some space from left side -->
+
+<div class="container" >
+
+<header class= "jumbotron">
+	
+	<div class="container"> <!-- To keep spacing we use this div ; When we shrink the browser, we have some space -->
+		<h1>Welcome to Yelpcamp! </h1>
+		<p>View our hand-picked campgrounds from all over the world	</p>
+		<a class = "btn btn-primary btn-lg" href="/campgrounds/new">Add new campground</a>
+	</div>
+</header>
+
+
+	<div class="row text-center" style="display:flex; flex-wrap:wrap"> 
+		<!-- to fix the problem of unequal heights of image, add a style attribute
+		style="display:flex; flex-wrap:wrap"
+		Using this grid becomes flexible even though heights are still different. -->
+		
+	<% campgrounds.forEach ( function(campground) { %>
+		
+		<div class="col-md-3 col-sm-6"> <!-- Making it responsive-->
+			
+			<div class="thumbnail" > <!-- help us to make grid or card -->
+				
+				<img src="<%=campground.image %>">
+			
+				<div class= "caption"> <!-- Inside the div with thumbnail class-->
+					<h4><%= campground.name %></h4>
+				</div>
+			
+				<p>
+				   <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary"> View Info</a>
+				</p>
+				
+			</div>
+			
+		</div>
+		<% } ) ;  %>
+		
+	</div>
+
+</div>
+	
+<%- include ("../partials/footer") %>
+
+
+
+<!--
+Attach a navbar. 
+
+Add the navbar code in header.ejs file. 
+-->
+

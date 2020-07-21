@@ -1,0 +1,20 @@
+<% include partials/header %>
+
+<h1><%= campground.name  %> </h1>
+
+<img src="<%= campground.image %>" >
+
+<p>	<%= campground.description %></p>
+
+<% campground.comments.forEach ( function (comment)  { %>  
+
+<!-- loop through all the comments on the campground on the show page. 
+Create a button to add a new comment. After adding it, come back to this page and see it. 
+-->
+	
+<p> <strong> <%= comment.author %> </strong> - <%= comment.text %> </p>
+
+<% }) ;  %> 
+
+<% include partials/footer %>
+

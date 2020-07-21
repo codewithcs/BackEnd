@@ -1,0 +1,50 @@
+var express= require("express") ;
+
+var app = express() ; 
+
+var request = require("request") ; 
+
+app.set("view engine", "ejs") ; 
+
+app.get("/" , function(req, res) { 
+res.render("search") ; 
+}) ; 
+
+// We are not calling /results route directly, Only call it through "/"
+app.get("/results", function(req, res) { 
+	
+	var query = req.query.search ; 
+	
+	var url = "http://www.omdbapi.com/?s=" + query + "&apikey=thewdb" ;
+	
+	request( url , function (error, response, body) { 
+
+	if ( !error && response.statusCode == 200 ) {
+		var parsedData = JSON.parse(body);
+		 res.render("results" , {parsedData: parsedData}) ; 
+		 
+	}
+	
+}) ;
+
+	
+}); 
+
+app.listen(3000, function() {
+	console.log("Movie App started") ; 
+}) ;
+
+/*
+NOTE: If we want to show the output we get from our API, then we will have to make the request to the API inside of app.get() : that is inside a request for a route. 
+By doing this we can use res.render(). 
+
+// res.send() has various overloaded types.
+
+in the /results
+get the data from the query string and set it at s in the api url. 
+
+
+*/
+
+
+

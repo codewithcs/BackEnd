@@ -1,0 +1,50 @@
+<% include partials/header %>
+
+<div class="ui main text container segment"> <!-- Segment puts border around things -->
+	<div class="ui huge header"><%= blog.title %></div>
+	
+	<div class="ui top attached"> 
+		
+		<div class="item">
+			<img class="ui centered rounded image" src="<%= blog.image %>">		
+			
+			<div class="content"> 
+				<span><%= blog.created.toDateString() %></span>
+			</div>
+			
+			<div class="description">
+				<p><%- blog.body %>	</p> <!-- using %- instead of %= -->
+			</div>
+			
+			<a id="delete" class="ui orange" href="/blogs/<%= blog._id %>/edit">Edit</a>
+			
+			<form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+				<button class="ui red basic button">Delete</button>
+			</form>
+			
+		</div>
+		
+	</div>
+	
+	
+</div>
+
+<% include partials/footer %>
+
+<!-- We can keep the inner segment instead of outer segment if we want to. -->
+<!-- Currently with <%= %> our blog.body is plain text 
+If we use <%- %> then it will evaluate blog.body and run it as code, rather 
+than just displaying the string. 
+We can use tags like <strong></strong> inside our text to make it bold.
+By this we can make different paragraphs by using many <p></p> 
+
+But there is a problem, we can add many <script></script> tags also.
+There are ways of preventing this issue. 
+"Sanitizing our Inputs"
+
+We can truncate our posts so that we do not see all the content on index page. 
+Lets limit to 100 characters.
+
+form by default is not an inline element. 
+-->
+

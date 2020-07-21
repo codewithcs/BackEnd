@@ -1,0 +1,150 @@
+body{
+	background-color: #000; 
+}
+
+#landing-header {
+	z-index: 1;
+	position: relative; 
+	text-align: center; 
+	padding-top: 40vh; 
+}
+
+#landing-header h1 {
+  color: #fff;
+}
+
+/* style the unordered list. */
+.slideshow { 
+  position: fixed;
+	
+  width: 100%;
+  height: 100%;
+	
+  top: 0;
+  left: 0;
+  
+   z-index: 0; /* background images are behind the other content, behind the 
+	welcome text and view button */
+  
+  list-style: none; /* removes the bullet points. */
+  
+  margin: 0;
+  padding: 0;
+	
+}
+
+/*Style the individual li items. */
+.slideshow li { 
+	
+  width: 100%;
+  height: 100%;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  background-size: cover; /* allows the image to take up the entire space on the page. */
+	
+  background-position: 50% 50%; /* centers the image perfectly on the page. */
+  
+  background-repeat: no-repeat; /* images not repeating vertically or horizontally. */
+  
+  opacity: 0; /*want the images to start faded out; Slowly fade them into opacity of 1 using animation.  */
+  z-index: 0;
+  
+  animation: imageAnimation 50s linear infinite; 
+
+}
+/* name of the animation is imageAnimation. Can give it any name. 
+Make the animation last for 50 seconds. make sure it is linear. 
+linear gives same speed from beginning to end. 
+
+tell the animation to loop infinitely. That way the slideshow never ends. 
+*/
+
+.slideshow li:nth-child(1) { 
+  background-image: url(https://i.imgur.com/K3mPv14.jpg) 
+}
+
+.slideshow li:nth-child(2) { 
+  background-image: url(https://i.imgur.com/SBEmFpv.jpg);
+  animation-delay: 10s; 
+}
+
+.slideshow li:nth-child(3) { 
+  background-image: url(https://i.imgur.com/emvhOnb.jpg);
+  animation-delay: 20s; 
+}
+
+.slideshow li:nth-child(4) { 
+  background-image: url(https://i.imgur.com/2LSMCmJ.jpg);
+  animation-delay: 30s; 
+}
+
+.slideshow li:nth-child(5) { 
+  background-image: url(https://i.imgur.com/TVGe0Ef.jpg);
+  animation-delay: 40s; 
+}
+
+
+@keyframes imageAnimation { 
+	
+  0% { 
+    opacity: 0; 
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+	
+}
+
+/* 
+Indicate what we want to happen at various keyframes within the animation. 
+The animation goes from 0% all the way upto 100%. 
+We are only concerned from 0% to 30%. */
+
+/* 
+
+We start our animation at 0 for the opacity. And all the way up to 10% we let it fade in to an 
+opacity of 1. We leave the opacity 1 all the way through 20%. 
+We fade it back out to 0 at 30%. 
+
+ease-in and ease-out : These give a smooth transition as the image fades in from 0 to 1. 
+
+opacity:0 completely invisible. 
+
+Total time = 50 seconds. 
+10% of this is 5 seconds. 
+
+The first image fades in from 0-5 seconds (0-10%)
+And then remains faded in for another 5 seconds. (10-20% ) 
+And then fades out in next 5 seconds. ( 20-30% )
+
+2nd image comes in after 10 seconds and similarly for other images as specified in the 
+animation-delay of other images. 
+
+As specified in the graph, blue: Fade in, Red: solid and Yellow: Fade out. 
+
+*/
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}
+
+/* Browsers that don't support css animations, for them only the background will be visible */
+
+
+
+
+
+
+

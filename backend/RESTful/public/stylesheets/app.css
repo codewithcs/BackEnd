@@ -1,0 +1,11 @@
+i.icon{
+	font-size: 2em; /* double the size of the parent. */
+}
+
+.container.main { /* Element having both container and main classes. */
+	margin-top: 7.0em; 
+}
+
+#delete{
+	display: inline; 
+}
